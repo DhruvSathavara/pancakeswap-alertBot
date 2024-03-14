@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 const TelegramBot = require('node-telegram-bot-api');
 
 const addresses = {
-    factory: "0x45Ef2BA943859fA6dBC03fF32600B9AACeA1Aef0",
+    factory: "0x541d5c7754B84F8Db0bB2ec7035aC63e643c5935",
     // factory: "0x0BFbCF9fa4f9C56B0F40a671Ad40E0805A091865",
 }
 
@@ -37,8 +37,8 @@ const factory = new ethers.Contract(
     account
 );
 
-factory.on("PairCreated", async (token0, token1, addressPair) => {
-    const message = `New pair created: Token 0: ${token0} Token 1: ${token1} Pair Address: ${addressPair}`;
+factory.on("PairCreated", async (token0, token1, addressPair, timeStamp) => {
+    const message = `New pair created: Token 0: ${token0} Token 1: ${token1} Pair Address: ${addressPair} at ${timeStamp} time`;
     console.log(message);
 
     await sendMessageToTelegram(message);
